@@ -12,7 +12,7 @@
 <rfc ipr="trust200902" docName="draft-montenegro-quic-negotiate-pnp-00" category="std">
 
   <front>
-    <title abbrev="QUIC PNP Negotiation">QUIC Negotiation for Packer Number Protection</title>
+    <title abbrev="QUIC PNP Negotiation">QUIC Negotiation for Packet Number Protection</title>
 
     <author initials="G." surname="Montenegro" fullname="Gabriel Montenegro">
       <organization>Microsoft Corporation</organization>

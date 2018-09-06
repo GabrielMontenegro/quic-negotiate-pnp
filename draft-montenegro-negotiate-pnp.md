@@ -1,5 +1,5 @@
 ---
-title: QUIC Negotiation for Packer Number Protection
+title: QUIC Negotiation for Packet Number Protection
 abbrev: QUIC PNP Negotiation
 docname: draft-montenegro-quic-negotiate-pnp-latest
 date: {DATE}
