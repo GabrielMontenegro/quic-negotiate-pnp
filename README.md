@@ -1,4 +1,4 @@
-# QUIC Negotiation for Packer Number Protection
+# QUIC Negotiation for Packet Number Protection
 
 This is the working area for the individual Internet-Draft, "QUIC Negotiation for Packet Number Protection".
 
