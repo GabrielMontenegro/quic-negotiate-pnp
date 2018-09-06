@@ -9,7 +9,7 @@ Expires: March 10, 2019                            Microsoft Corporation
                                                        September 6, 2018
 
 
-             QUIC Negotiation for Packer Number Protection
+             QUIC Negotiation for Packet Number Protection
                draft-montenegro-quic-negotiate-pnp-latest
 
 Abstract
