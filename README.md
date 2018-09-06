@@ -1,6 +1,6 @@
 # QUIC Negotiation for Packer Number Protection
 
-This is the working area for the individual Internet-Draft, "QUIC Negotiation for Packer Number Protection".
+This is the working area for the individual Internet-Draft, "QUIC Negotiation for Packet Number Protection".
 
 * [Editor's Copy](https://GabrielMontenegro.github.io/quic-negotiate-pnp/#go.draft-montenegro-negotiate-pnp.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-montenegro-negotiate-pnp)
