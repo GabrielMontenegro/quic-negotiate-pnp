@@ -295,7 +295,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Montenegro, G., Banks, N., and P. Balasubramanian" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-montenegro-quic-negotiate-pnp-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-06" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-09" />
   <meta name="dct.abstract" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet number protection to be optionally disabled." />
   <meta name="description" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet number protection to be optionally disabled." />
 
@@ -319,12 +319,12 @@ ul.toc li {
 <td class="right">P. Balasubramanian</td>
 </tr>
 <tr>
-<td class="left">Expires: March 10, 2019</td>
+<td class="left">Expires: March 13, 2019</td>
 <td class="right">Microsoft Corporation</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">September 6, 2018</td>
+<td class="right">September 9, 2018</td>
 </tr>
 
     	
@@ -343,7 +343,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on March 10, 2019.</p>
+<p>This Internet-Draft will expire on March 13, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -375,7 +375,7 @@ ul.toc li {
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
 <p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for some environments. In particular, QUIC uses Packet Number Protection (PNP) to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter.</p>
-<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable PNP. Internet facing nodes MUST not disable PNP, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.</p>
+<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable PNP.  Internet facing nodes SHOULD NOT disable PNP, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
 </h1>
@@ -390,8 +390,9 @@ ul.toc li {
 <dt>disable_packet_number_protection (0x000c ?, value TBD):</dt>
 <dd style="margin-left: 8">The endpoint is disabling packet number protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
 </dl>
-<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_number_protection&#8221; parameter requires both peers to send this transport parameter.</p>
-<p id="rfc.section.3.p.4">Peers that have successfully negotiated the &#8220;disable_packet_number_protection&#8221; parameter MUST NOT use packet number protection on short header packets.</p>
+<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_number_protection&#8221; parameter requires both peers to send this transport parameter as well as the &#8220;disable_migration&#8221; parameter.</p>
+<p id="rfc.section.3.p.4">An endpoint MUST treat receipt of &#8220;disable_packet_number_protection&#8221; without the &#8220;disable_migration&#8221; parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.</p>
+<p id="rfc.section.3.p.5">Peers that have successfully negotiated the &#8220;disable_packet_number_protection&#8221; parameter MUST NOT use packet number protection on short header packets.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>

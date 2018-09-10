@@ -5,8 +5,8 @@
 QUIC                                                       G. Montenegro
 Internet-Draft                                                  N. Banks
 Intended status: Standards Track                      P. Balasubramanian
-Expires: March 10, 2019                            Microsoft Corporation
-                                                       September 6, 2018
+Expires: March 13, 2019                            Microsoft Corporation
+                                                       September 9, 2018
 
 
              QUIC Negotiation for Packet Number Protection
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 10, 2019.
+   This Internet-Draft will expire on March 13, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Montenegro, et al.       Expires March 10, 2019                 [Page 1]
+Montenegro, et al.       Expires March 13, 2019                 [Page 1]
 
 Internet-Draft            QUIC PNP Negotiation            September 2018
 
@@ -76,7 +76,7 @@ Table of Contents
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
+     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
      6.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
@@ -90,7 +90,7 @@ Table of Contents
    particular, connections within a datacenter.
 
    This document defines a negotiation mechanism using transport
-   parameters to disable PNP.  Internet facing nodes MUST not disable
+   parameters to disable PNP.  Internet facing nodes SHOULD NOT disable
    PNP, so browsers, for example, should not implement this extension.
    On the other hand, configured nodes within a datacenter could turn
    off PNP in their exchanges to avoid the CPU cost that PNP implies.
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Montenegro, et al.       Expires March 10, 2019                 [Page 2]
+Montenegro, et al.       Expires March 13, 2019                 [Page 2]
 
 Internet-Draft            QUIC PNP Negotiation            September 2018
 
@@ -125,7 +125,12 @@ Internet-Draft            QUIC PNP Negotiation            September 2018
       affects short headers.
 
    A successful negotiation of the "disable_packet_number_protection"
-   parameter requires both peers to send this transport parameter.
+   parameter requires both peers to send this transport parameter as
+   well as the "disable_migration" parameter.
+
+   An endpoint MUST treat receipt of "disable_packet_number_protection"
+   without the "disable_migration" parameter as a connection error of
+   type TRANSPORT_PARAMETER_ERROR.
 
    Peers that have successfully negotiated the
    "disable_packet_number_protection" parameter MUST NOT use packet
@@ -154,21 +159,23 @@ Internet-Draft            QUIC PNP Negotiation            September 2018
 
 6.  References
 
+
+
+
+
+
+
+Montenegro, et al.       Expires March 13, 2019                 [Page 3]
+
+Internet-Draft            QUIC PNP Negotiation            September 2018
+
+
 6.1.  Normative References
 
    [QUIC-TLS]
               Thomson, M., Ed. and S. Turner, Ed., "Using Transport
               Layer Security (TLS) to Secure QUIC", draft-ietf-quic-tls-
               latest (work in progress).
-
-
-
-
-
-Montenegro, et al.       Expires March 10, 2019                 [Page 3]
-
-Internet-Draft            QUIC PNP Negotiation            September 2018
-
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
@@ -214,11 +221,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-Montenegro, et al.       Expires March 10, 2019                 [Page 4]
+Montenegro, et al.       Expires March 13, 2019                 [Page 4]
