@@ -2,9 +2,9 @@
 
 This is the working area for the individual Internet-Draft, "QUIC Negotiation for Packet Number Protection".
 
-* [Editor's Copy](https://GabrielMontenegro.github.io/quic-negotiate-pnp/#go.draft-montenegro-negotiate-pnp.html)
-* [Individual Draft](https://tools.ietf.org/html/draft-montenegro-negotiate-pnp)
-* [Compare Editor's Copy to Individual Draft](https://GabrielMontenegro.github.io/quic-negotiate-pnp/#go.draft-montenegro-negotiate-pnp.diff)
+* [Editor's Copy](https://GabrielMontenegro.github.io/quic-negotiate-pnp/#go.draft-montenegro-quic-negotiate-pnp.html)
+* [Individual Draft](https://tools.ietf.org/html/draft-montenegro-quic-negotiate-pnp)
+* [Compare Editor's Copy to Individual Draft](https://GabrielMontenegro.github.io/quic-negotiate-pnp/#go.draft-montenegro-quic-negotiate-pnp.diff)
 
 ## Building the Draft
 
