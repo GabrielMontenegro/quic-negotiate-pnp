@@ -93,8 +93,8 @@ to prevent ossification and to provide unlinkability upon (voluntary) migration.
 However, there are environments where these are not a concern, in particular,
 connections within a datacenter.
 
-This document defines
-a negotiation mechanism using transport parameters to disable PNP. Internet facing nodes MUST not disable PNP, so
+This document defines a negotiation mechanism using transport parameters to disable PNP.
+Internet facing nodes SHOULD NOT disable PNP, so
 browsers, for example, should not implement this extension. On the other hand, configured nodes
 within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.
 
@@ -115,9 +115,14 @@ disable_packet_number_protection (0x000c ?, value TBD):
   This parameter is a zero-length value. This parameter only affects short headers.
 
 A successful negotiation of the "disable_packet_number_protection" parameter
-requires both peers to send this transport parameter.
+requires both peers to send this transport parameter as well as the "disable_migration"
+parameter.
 
-Peers that have successfully negotiated the "disable_packet_number_protection" parameter MUST NOT use packet number protection on short header packets.
+An endpoint MUST treat receipt of "disable_packet_number_protection" without the
+"disable_migration" parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
+
+Peers that have successfully negotiated the "disable_packet_number_protection" parameter
+MUST NOT use packet number protection on short header packets.
 
 
 # Security Considerations
