@@ -3,7 +3,7 @@ title: QUIC Negotiation for Packet Number Protection
 abbrev: QUIC PNP Negotiation
 docname: draft-montenegro-quic-negotiate-pnp-latest
 date: {DATE}
-category: std
+category: info
 ipr: trust200902
 area: Transport
 workgroup: QUIC
@@ -147,3 +147,8 @@ hexadecimal) as follows:
 
 --- back
 
+# Acknowledgments
+{:numbered="false"}
+
+Thanks to the following individuals for useful discussions: Christian Huitema, Martin Thomson,
+Mikkel Fahnøe Jørgensen, Ian Swett, Martin Duke, Lucas Pardue.
