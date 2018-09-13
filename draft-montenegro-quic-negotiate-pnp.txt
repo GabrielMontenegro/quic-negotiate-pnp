@@ -4,9 +4,9 @@
 
 QUIC                                                       G. Montenegro
 Internet-Draft                                                  N. Banks
-Intended status: Standards Track                      P. Balasubramanian
-Expires: March 14, 2019                            Microsoft Corporation
-                                                      September 10, 2018
+Intended status: Informational                        P. Balasubramanian
+Expires: March 17, 2019                            Microsoft Corporation
+                                                      September 13, 2018
 
 
              QUIC Negotiation for Packet Number Protection
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 14, 2019.
+   This Internet-Draft will expire on March 17, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Montenegro, et al.       Expires March 14, 2019                 [Page 1]
+Montenegro, et al.       Expires March 17, 2019                 [Page 1]
 
 Internet-Draft            QUIC PNP Negotiation            September 2018
 
@@ -78,6 +78,7 @@ Table of Contents
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
      6.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .   4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
@@ -108,8 +109,7 @@ Table of Contents
 
 
 
-
-Montenegro, et al.       Expires March 14, 2019                 [Page 2]
+Montenegro, et al.       Expires March 17, 2019                 [Page 2]
 
 Internet-Draft            QUIC PNP Negotiation            September 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            QUIC PNP Negotiation            September 2018
 
 
 
-Montenegro, et al.       Expires March 14, 2019                 [Page 3]
+Montenegro, et al.       Expires March 17, 2019                 [Page 3]
 
 Internet-Draft            QUIC PNP Negotiation            September 2018
 
@@ -199,6 +199,12 @@ Internet-Draft            QUIC PNP Negotiation            September 2018
 
    [3] https://github.com/quicwg/base-drafts/labels/-recovery
 
+Acknowledgments
+
+   Thanks to the following individuals for useful discussions: Christian
+   Huitema, Martin Thomson, Mikkel Fahnoee Joergensen, Ian Swett, Martin
+   Duke, Lucas Pardue.
+
 Authors' Addresses
 
    Gabriel Montenegro
@@ -213,6 +219,13 @@ Authors' Addresses
    Email: NiBanks@Microsoft.com
 
 
+
+
+Montenegro, et al.       Expires March 17, 2019                 [Page 4]
+
+Internet-Draft            QUIC PNP Negotiation            September 2018
+
+
    Praveen Balasubramanian
    Microsoft Corporation
 
@@ -221,4 +234,47 @@ Authors' Addresses
 
 
 
-Montenegro, et al.       Expires March 14, 2019                 [Page 4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Montenegro, et al.       Expires March 17, 2019                 [Page 5]
