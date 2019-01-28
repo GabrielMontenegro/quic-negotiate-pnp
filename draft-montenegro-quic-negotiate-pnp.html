@@ -5,7 +5,7 @@
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
-  <title>QUIC Negotiation for Packet Number Protection</title>
+  <title>QUIC Negotiation for Packet Header Protection</title>
 
   
 <style type="text/css">/*<![CDATA[*/
@@ -83,8 +83,8 @@ table.header td, table#rfc\.headerblock td {
   line-height: 28px;
 }
 
-samp, tt, code, pre {
-  font: 15px Consolas, monospace;
+samp, tt, code, pre, span.tt {
+  font: 13.5px Consolas, monospace;
   font-size-adjust: none;
 }
 pre {
@@ -283,7 +283,7 @@ ul.toc li {
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.2" rel="Chapter" title="2 Conventions and Definitions">
-<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Packet Number Protection">
+<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Packet Header Protection">
 <link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations">
 <link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations">
 <link href="#rfc.references" rel="Chapter" title="6 Normative References">
@@ -291,14 +291,14 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.10.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.17.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Montenegro, G., Banks, N., and P. Balasubramanian" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-montenegro-quic-negotiate-pnp-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-13" />
-  <meta name="dct.abstract" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet number protection to be optionally disabled." />
-  <meta name="description" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet number protection to be optionally disabled." />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-28" />
+  <meta name="dct.abstract" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled." />
+  <meta name="description" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled." />
 
 </head>
 
@@ -320,23 +320,23 @@ ul.toc li {
 <td class="right">P. Balasubramanian</td>
 </tr>
 <tr>
-<td class="left">Expires: March 17, 2019</td>
+<td class="left">Expires: August 1, 2019</td>
 <td class="right">Microsoft Corporation</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">September 13, 2018</td>
+<td class="right">January 28, 2019</td>
 </tr>
 
     	
     </tbody>
   </table>
 
-  <p class="title">QUIC Negotiation for Packet Number Protection<br />
+  <p class="title">QUIC Negotiation for Packet Header Protection<br />
   <span class="filename">draft-montenegro-quic-negotiate-pnp-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet number protection to be optionally disabled.</p>
+<p>This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled.</p>
 <h1><a>Note to Readers</a></h1>
 <p>Discussion of this draft takes place on the QUIC working group mailing list (quic@ietf.org), which is archived at <a href="https://mailarchive.ietf.org/arch/search/?email_list=quic">https://mailarchive.ietf.org/arch/search/?email_list=quic</a>.</p>
 <p>Working Group information can be found at <a href="https://github.com/quicwg">https://github.com/quicwg</a>; source code and issues list for this draft can be found at <a href="https://github.com/quicwg/base-drafts/labels/-recovery">https://github.com/quicwg/base-drafts/labels/-recovery</a>.</p>
@@ -344,9 +344,9 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on March 17, 2019.</p>
+<p>This Internet-Draft will expire on August 1, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
-<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -358,7 +358,7 @@ ul.toc li {
 </li>
 <li>2.   <a href="#rfc.section.2">Conventions and Definitions</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Packet Number Protection</a>
+<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Packet Header Protection</a>
 </li>
 <li>4.   <a href="#rfc.section.4">Security Considerations</a>
 </li>
@@ -377,33 +377,33 @@ ul.toc li {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for some environments. In particular, QUIC uses Packet Number Protection (PNP) to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter.</p>
-<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable PNP.  Internet facing nodes SHOULD NOT disable PNP, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.</p>
+<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for some environments. In particular, QUIC uses Packet Header Protection (PkHP) to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter.</p>
+<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable PkHP.  Internet facing nodes SHOULD NOT disable PkHP, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off PkHP in their exchanges to avoid the CPU cost that PkHP implies.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
 </h1>
 <p id="rfc.section.2.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-packet-number-protection" id="transport-parameter-to-disable-packet-number-protection">Transport Parameter to Disable Packet Number Protection</a>
+<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-packet-header-protection" id="transport-parameter-to-disable-packet-header-protection">Transport Parameter to Disable Packet Header Protection</a>
 </h1>
 <p id="rfc.section.3.p.1">This document defines a new transport parameter for QUIC <a href="#QUIC-TRANSPORT" class="xref">[QUIC-TRANSPORT]</a>:</p>
 <p></p>
 
 <dl>
-<dt>disable_packet_number_protection (0x000c ?, value TBD):</dt>
-<dd style="margin-left: 8">The endpoint is disabling packet number protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
+<dt>disable_packet_header_protection (0x000c ?, value TBD):</dt>
+<dd style="margin-left: 8">The endpoint is disabling packet header protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
 </dl>
-<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_number_protection&#8221; parameter requires both peers to send this transport parameter as well as the &#8220;disable_migration&#8221; parameter.</p>
-<p id="rfc.section.3.p.4">An endpoint MUST treat receipt of &#8220;disable_packet_number_protection&#8221; without the &#8220;disable_migration&#8221; parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.</p>
-<p id="rfc.section.3.p.5">Peers that have successfully negotiated the &#8220;disable_packet_number_protection&#8221; parameter MUST NOT use packet number protection on short header packets.</p>
+<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_header_protection&#8221; parameter requires both peers to send this transport parameter as well as the &#8220;disable_migration&#8221; parameter.</p>
+<p id="rfc.section.3.p.4">An endpoint MUST treat receipt of &#8220;disable_packet_header_protection&#8221; without the &#8220;disable_migration&#8221; parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.</p>
+<p id="rfc.section.3.p.5">Peers that have successfully negotiated the &#8220;disable_packet_header_protection&#8221; parameter MUST NOT use packet header protection on short header packets.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
-<p id="rfc.section.4.p.1">Per section 6.11.5 of <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>, PNP is used as a partial mitigation against linkability, and to prevent ossification.  The &#8220;disable_packet_number_protection&#8221; parameter should be negotiated in environments in which these are not a concern.</p>
+<p id="rfc.section.4.p.1">PkHP was added as a partial mitigation against linkability, and to prevent ossification.  The &#8220;disable_packet_header_protection&#8221; parameter should be negotiated in environments in which these are not a concern.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.5.p.1">Per section 13.1 of <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>, this document requests IANA assign a value for the new transport parameter and record it in the registry for &#8220;QUIC Transport Parameters&#8221; under the &#8220;QUIC Protocol&#8221; heading.  IANA is further requested to assign a value with the first byte in the range 0x00 to 0xfe (in hexadecimal) as follows:</p>
+<p id="rfc.section.5.p.1">Per section 10 of <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>, this document requests IANA assign a value for the new transport parameter and record it in the registry for &#8220;QUIC Transport Parameters&#8221; under the &#8220;QUIC Protocol&#8221; heading.  IANA is further requested to assign a value with the first byte in the range 0x00 to 0xfe (in hexadecimal) as follows:</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="left">Value</th>
@@ -412,7 +412,7 @@ ul.toc li {
 </tr></thead>
 <tbody><tr>
 <td class="left">0x000c</td>
-<td class="left">disable_packet_number_protection</td>
+<td class="left">disable_packet_header_protection</td>
 <td class="left">This document</td>
 </tr></tbody>
 </table>
