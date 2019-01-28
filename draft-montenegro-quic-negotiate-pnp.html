@@ -5,7 +5,7 @@
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
-  <title>QUIC Negotiation for Packet Header Protection</title>
+  <title>QUIC Negotiation for Header Protection</title>
 
   
 <style type="text/css">/*<![CDATA[*/
@@ -283,7 +283,7 @@ ul.toc li {
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.2" rel="Chapter" title="2 Conventions and Definitions">
-<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Packet Header Protection">
+<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Header Protection">
 <link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations">
 <link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations">
 <link href="#rfc.references" rel="Chapter" title="6 Normative References">
@@ -297,8 +297,8 @@ ul.toc li {
   <meta name="dct.creator" content="Montenegro, G., Banks, N., and P. Balasubramanian" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-montenegro-quic-negotiate-pnp-latest" />
   <meta name="dct.issued" scheme="ISO8601" content="2019-28" />
-  <meta name="dct.abstract" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled." />
-  <meta name="description" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled." />
+  <meta name="dct.abstract" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing header protection to be optionally disabled." />
+  <meta name="description" content="This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing header protection to be optionally disabled." />
 
 </head>
 
@@ -332,11 +332,11 @@ ul.toc li {
     </tbody>
   </table>
 
-  <p class="title">QUIC Negotiation for Packet Header Protection<br />
+  <p class="title">QUIC Negotiation for Header Protection<br />
   <span class="filename">draft-montenegro-quic-negotiate-pnp-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing packet header protection to be optionally disabled.</p>
+<p>This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by allowing header protection to be optionally disabled.</p>
 <h1><a>Note to Readers</a></h1>
 <p>Discussion of this draft takes place on the QUIC working group mailing list (quic@ietf.org), which is archived at <a href="https://mailarchive.ietf.org/arch/search/?email_list=quic">https://mailarchive.ietf.org/arch/search/?email_list=quic</a>.</p>
 <p>Working Group information can be found at <a href="https://github.com/quicwg">https://github.com/quicwg</a>; source code and issues list for this draft can be found at <a href="https://github.com/quicwg/base-drafts/labels/-recovery">https://github.com/quicwg/base-drafts/labels/-recovery</a>.</p>
@@ -358,7 +358,7 @@ ul.toc li {
 </li>
 <li>2.   <a href="#rfc.section.2">Conventions and Definitions</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Packet Header Protection</a>
+<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Header Protection</a>
 </li>
 <li>4.   <a href="#rfc.section.4">Security Considerations</a>
 </li>
@@ -377,29 +377,29 @@ ul.toc li {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for some environments. In particular, QUIC uses Packet Header Protection (PkHP) to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter.</p>
-<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable PkHP.  Internet facing nodes SHOULD NOT disable PkHP, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off PkHP in their exchanges to avoid the CPU cost that PkHP implies.</p>
+<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for some environments. In particular, QUIC uses Header Protection to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter.</p>
+<p id="rfc.section.1.p.2">This document defines a negotiation mechanism using transport parameters to disable header protection.  Internet facing nodes SHOULD NOT disable header protection, so browsers, for example, should not implement this extension. On the other hand, configured nodes within a datacenter could turn off header protection in their exchanges to avoid the CPU cost that header protection implies.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
 </h1>
 <p id="rfc.section.2.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-packet-header-protection" id="transport-parameter-to-disable-packet-header-protection">Transport Parameter to Disable Packet Header Protection</a>
+<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-header-protection" id="transport-parameter-to-disable-header-protection">Transport Parameter to Disable Header Protection</a>
 </h1>
 <p id="rfc.section.3.p.1">This document defines a new transport parameter for QUIC <a href="#QUIC-TRANSPORT" class="xref">[QUIC-TRANSPORT]</a>:</p>
 <p></p>
 
 <dl>
-<dt>disable_packet_header_protection (0x000c ?, value TBD):</dt>
-<dd style="margin-left: 8">The endpoint is disabling packet header protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
+<dt>disable_header_protection (0x000c ?, value TBD):</dt>
+<dd style="margin-left: 8">The endpoint is disabling header protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
 </dl>
-<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_header_protection&#8221; parameter requires both peers to send this transport parameter as well as the &#8220;disable_migration&#8221; parameter.</p>
-<p id="rfc.section.3.p.4">An endpoint MUST treat receipt of &#8220;disable_packet_header_protection&#8221; without the &#8220;disable_migration&#8221; parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.</p>
-<p id="rfc.section.3.p.5">Peers that have successfully negotiated the &#8220;disable_packet_header_protection&#8221; parameter MUST NOT use packet header protection on short header packets.</p>
+<p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_header_protection&#8221; parameter requires both peers to send this transport parameter as well as the &#8220;disable_migration&#8221; parameter.</p>
+<p id="rfc.section.3.p.4">An endpoint MUST treat receipt of &#8220;disable_header_protection&#8221; without the &#8220;disable_migration&#8221; parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.</p>
+<p id="rfc.section.3.p.5">Peers that have successfully negotiated the &#8220;disable_header_protection&#8221; parameter MUST NOT use header protection on short header packets.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
-<p id="rfc.section.4.p.1">PkHP was added as a partial mitigation against linkability, and to prevent ossification.  The &#8220;disable_packet_header_protection&#8221; parameter should be negotiated in environments in which these are not a concern.</p>
+<p id="rfc.section.4.p.1">Header protection was added as a partial mitigation against linkability, and to prevent ossification.  The &#8220;disable_header_protection&#8221; parameter should be negotiated in environments in which these are not a concern.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
@@ -412,7 +412,7 @@ ul.toc li {
 </tr></thead>
 <tbody><tr>
 <td class="left">0x000c</td>
-<td class="left">disable_packet_header_protection</td>
+<td class="left">disable_header_protection</td>
 <td class="left">This document</td>
 </tr></tbody>
 </table>
