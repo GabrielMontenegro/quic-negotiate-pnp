@@ -1,6 +1,6 @@
 ---
-title: QUIC Negotiation for Packet Header Protection
-abbrev: QUIC PkHP Negotiation
+title: QUIC Negotiation for Header Protection
+abbrev: QUIC Header Protection Negotiation
 docname: draft-montenegro-quic-negotiate-pnp-latest
 date: {DATE}
 category: info
@@ -72,7 +72,7 @@ informative:
 --- abstract
 
 This document defines an extension to reduce the cost of QUIC deployment in environments like datacenters by 
-allowing packet header protection to be optionally disabled.
+allowing header protection to be optionally disabled.
 
 --- note_Note_to_Readers
 
@@ -89,15 +89,15 @@ code and issues list for this draft can be found at
 # Introduction
 
 QUIC is a new transport for the internet. In its generality, there are features which are not well suited
-for some environments. In particular, QUIC uses Packet Header Protection (PkHP) 
+for some environments. In particular, QUIC uses Header Protection
 to prevent ossification and to provide unlinkability upon (voluntary) migration.
 However, there are environments where these are not a concern, in particular,
 connections within a datacenter.
 
-This document defines a negotiation mechanism using transport parameters to disable PkHP.
-Internet facing nodes SHOULD NOT disable PkHP, so
+This document defines a negotiation mechanism using transport parameters to disable header protection.
+Internet facing nodes SHOULD NOT disable header protection, so
 browsers, for example, should not implement this extension. On the other hand, configured nodes
-within a datacenter could turn off PkHP in their exchanges to avoid the CPU cost that PkHP implies.
+within a datacenter could turn off header protection in their exchanges to avoid the CPU cost that header protection implies.
 
 # Conventions and Definitions
 
@@ -106,29 +106,29 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}}
 when, and only when, they appear in all capitals, as shown here.
 
-# Transport Parameter to Disable Packet Header Protection
+# Transport Parameter to Disable Header Protection
 
 This document defines a new transport parameter for QUIC {{QUIC-TRANSPORT}}:
 
-disable_packet_header_protection (0x000c ?, value TBD):
+disable_header_protection (0x000c ?, value TBD):
 
-: The endpoint is disabling packet header protection as specified in {{QUIC-TLS}}.
+: The endpoint is disabling header protection as specified in {{QUIC-TLS}}.
   This parameter is a zero-length value. This parameter only affects short headers.
 
-A successful negotiation of the "disable_packet_header_protection" parameter
+A successful negotiation of the "disable_header_protection" parameter
 requires both peers to send this transport parameter as well as the "disable_migration"
 parameter.
 
-An endpoint MUST treat receipt of "disable_packet_header_protection" without the
+An endpoint MUST treat receipt of "disable_header_protection" without the
 "disable_migration" parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
 
-Peers that have successfully negotiated the "disable_packet_header_protection" parameter
-MUST NOT use packet header protection on short header packets.
+Peers that have successfully negotiated the "disable_header_protection" parameter
+MUST NOT use header protection on short header packets.
 
 # Security Considerations
 
-PkHP was added as a partial mitigation against linkability, and to prevent ossification.
-The "disable_packet_header_protection" parameter should be negotiated in environments in which these are not
+Header protection was added as a partial mitigation against linkability, and to prevent ossification.
+The "disable_header_protection" parameter should be negotiated in environments in which these are not
 a concern.
 
 # IANA Considerations
@@ -141,7 +141,7 @@ hexadecimal) as follows:
 
 | Value  | Parameter Name                   | Specification                       |
 |:-------|:---------------------------------|:------------------------------------|
-| 0x000c | disable_packet_header_protection | This document                       |
+| 0x000c | disable_header_protection        | This document                       |
 
 
 --- back
