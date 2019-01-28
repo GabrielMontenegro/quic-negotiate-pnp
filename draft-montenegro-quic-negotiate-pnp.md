@@ -125,7 +125,6 @@ An endpoint MUST treat receipt of "disable_packet_header_protection" without the
 Peers that have successfully negotiated the "disable_packet_header_protection" parameter
 MUST NOT use packet header protection on short header packets.
 
-
 # Security Considerations
 
 PkHP was added as a partial mitigation against linkability, and to prevent ossification.
