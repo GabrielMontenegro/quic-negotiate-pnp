@@ -1,4 +1,4 @@
-# QUIC Negotiation for Packet Number Protection
+# QUIC Negotiation for Header Protection
 
 This is the working area for the individual Internet-Draft, "QUIC Negotiation for Header Protection".
 
